@@ -1,0 +1,25 @@
+{
+    "name": "TypeScript Training",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [3004], 
+    //コンテナ内で動いているサービスのポートを手元のpcへ転送
+    "postCreateCommand": "npm install",
+    "customizations": {
+        "vscode": {
+            "extentions": [
+                "ms-vscode.vscode-typescript-next",
+                // VSコードの拡張を入れる
+                "formulahendry.code-runner"
+                //コードランナー
+            ],
+            "settings": {
+                "code-runner.executorMap": {
+                    "typescript": "npx tsx"
+                },
+                "code-runner.runInTerminal":true
+            }
+        }
+    }
+}
