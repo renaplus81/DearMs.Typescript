@@ -6,11 +6,13 @@
     "forwardPorts": [3004], 
     //コンテナ内で動いているサービスのポートを手元のpcへ転送
     "postCreateCommand": "npm install",
+    //コンテナが作成された直後に自動で実行されるコマンド
     "customizations": {
         "vscode": {
             "extentions": [
                 "ms-vscode.vscode-typescript-next",
                 // VSコードの拡張を入れる
+                //msはmicrosoft
                 "formulahendry.code-runner"
                 //コードランナー
             ],

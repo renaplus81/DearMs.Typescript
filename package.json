@@ -1,0 +1,13 @@
+{
+    "name": "ts-training",
+    "private": true,
+    "scipts": {
+        "dev": "vite --port 3004 --host",
+        "run" : "tsx"
+    },
+    "devcDependencies":{
+        "tsx": "^4",
+        "typescript": "5^",
+        "vite": "^6"
+    }
+}
