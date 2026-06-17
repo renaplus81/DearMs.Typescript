@@ -9,7 +9,7 @@
     //コンテナが作成された直後に自動で実行されるコマンド
     "customizations": {
         "vscode": {
-            "extentions": [
+            "extensions": [
                 "ms-vscode.vscode-typescript-next",
                 // VSコードの拡張を入れる
                 //msはmicrosoft
@@ -22,6 +22,11 @@
                 },
                 "code-runner.runInTerminal":true
             }
+        }
+    },
+    "features": { //gitのダウンロード(簡単バージョン)
+        "ghcr.io/devcontainers/features/git:1":{
+            "version": "latest"
         }
     }
 }

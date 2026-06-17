@@ -1,0 +1,17 @@
+.rectangle{
+    width: 100px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    /* min-height: 100px; */
+    display: flex;
+    /* 横並びにするための要素 */
+    align-items: center;
+    /* 縦方向の中央揃え */
+    justify-content: center;
+    /* 横方向の中央揃え */
+    font-size: 14px;
+    /* 文字サイズ */
+    
+}
