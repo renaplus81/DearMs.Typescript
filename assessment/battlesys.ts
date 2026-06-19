@@ -32,20 +32,24 @@ class Character {
     function attackDmg(hp: number, attackPower: number, name: string){
         //もしhpの方が攻撃より数字が大きい時(>=だと同じ時0になっちゃう)
         if(hp > attackPower){
-            hp -= attackPower; 
+            // hp -= attackPower; ←これいらない？
+
             //残りダメージの表示
             //ここのnumberは型なので変数名ではあリャエセn
             let remHp: number = hp -= attackPower;
+            //remainingHpをリターン
         console.log(`${name}が${attackPower}ダメージを与えた！(残り${remHp}HP。)`);
         } else {
         console.log(`${name}を倒した！`);
+        }
+        return attackDmg;
     }
-
-
-
-  }
+    //なかなかこのコンソールが出力されてくれない
+    //returnの位置がわかんない。
+    console.log(attackDmg(10, 5, '勇者'));
 }
 }
+
  
  
 // ---------------------------------------------------
