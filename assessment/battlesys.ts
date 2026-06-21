@@ -1,54 +1,89 @@
 // ---------------------------------------------------
 // 必須: Character クラスを完成させる
 // ---------------------------------------------------
+//登場人物を作るというよりは、登場人物がそれぞれ必ず持つ特性をクラスしている
 class Character {
   name: string;
   hp: number;
   attackPower: number;
  
   // コンストラクタ（ここはお手本として埋めてあります）
+
+  ///敵のコンストラクタはいらないのかな
   constructor(name: string, hp: number, attackPower: number) {
+    //🐻主人公も敵もnameにしてたがコンソール出力時に同じ名前になっちゃう
+    //でもnameの言葉を変えたらエラーになる
+    //ここでenemyを作ったらhpとattackpowerもenemy専用で作らないといけなくなる
     this.name = name;
     this.hp = hp;
     this.attackPower = attackPower;
-
   }
- 
-  // 相手を攻撃するメソッド
 
+  // 相手を攻撃するメソッド
   ///void: 戻り値を無視する
+  ///voidがついてるからコンソールが出力されないというわけではない
+  //でもなんでvoidがあるのかは説明できない
+
+  //target: は仮引数。
+  //targetにはCharacterの方が入る、ということ
+  //‼️Characterの型、というのはCharacterから作られたインスタンス
+  //attackメソどはCharacter型の相手を一人受け取りますくらいの意味。
   attack(target: Character): void {
     // TODO: target の hp を this.attackPower の分だけ減らす
     // TODO: 攻撃の結果を console.log で表示する
     //       例) 「勇者 の攻撃！ スライム に 20 ダメージ（残りHP: 30）」
 
-    ///攻撃ダメージをhpからマイナス
     ///最初はinterfaceを使ってたけど、interfaceはデータのかたを定義するもので、
     ///functionは実際の処理(動的なアクション)を実行するものなので
     ///変えた
     ///thisつけるかつけないかわからなかったけど消したらエラーも消えた
 
     ///残りダメージの表示方法むずい
-    function attackDmg(hp: number, attackPower: number, name: string){
+
+    //一回attackDmg消してみる
+    // function attackDmg( name: string, hp: number, attackPower: number){
         //もしhpの方が攻撃より数字が大きい時(>=だと同じ時0になっちゃう)
-        if(hp > attackPower){
-            // hp -= attackPower; ←これいらない？
+        if(this.hp > this.attackPower){
+            // hp -= attackPower; ←これいらない
 
             //残りダメージの表示
             //ここのnumberは型なので変数名ではあリャエセn
-            let remHp: number = hp -= attackPower;
+                let remHp: number = this.hp -= this.attackPower;
             //remainingHpをリターン
-        console.log(`${name}が${attackPower}ダメージを与えた！(残り${remHp}HP。)`);
-        } else {
-        console.log(`${name}を倒した！`);
+            console.log(`${this.name}が${target}に${this.attackPower}ダメージを与えた！(残り${remHp}HP。)`);
+            return this.hp;
+            //this number is not assignable to type voidだって
+
+            } else if(this.hp = 0){
+            console.log(`${target}を倒した！`);
+            return this.hp;
+            }else{
+            console.log(`gameover`);
+            }
+        this.attack(target);
+        //勇者が[object Object]に50ダメージを与えた！(残り50HP。)と出てきた、
+        //何を直したら正確に出るか？
+        //今の問題点：スライムの情報が出てない。
+        //:returnに赤波線あり→return消したらコンソール出力されなくなる
+        //:勇者の体力から攻撃力がマイナスされている
         }
-        return attackDmg;
+        
     }
-    //なかなかこのコンソールが出力されてくれない
-    //returnの位置がわかんない。
-    console.log(attackDmg(10, 5, '勇者'));
-}
-}
+
+    //インスタンスの存在、設計図からobj
+    //インスタンスはクラスの外にかきます
+    //一回め実行したら何故かenemyが10出てきた。
+    //インスタンスは何個でも作れるんですよ←new!
+
+    //引数がclass最初に決めたプロパティの順番じゃないとダメかもしれ
+    const yusha = new Character('勇者',100,50);
+    const slime = new Character('スライム',80,30);
+
+    //オブジェクト.メソッド※[.は〜の]
+    //一回実行したらundefinedになった。なぜ？
+    //→void
+    //
+    console.log(yusha.attack(slime));
 
  
  
