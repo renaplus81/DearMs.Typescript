@@ -19,7 +19,6 @@ class Character {
     this.hp = hp;
     this.attackPower = attackPower;
   }
-  //ここまで元々書いてありました
 
   // 相手を攻撃するメソッド
   ///void: 戻り値を無視する
@@ -31,7 +30,9 @@ class Character {
   //targetにはCharacterの方が入る、ということ
   //‼️Characterの型、というのはCharacterから作られたインスタンスらしいです。
   //attackメソどはCharacter型の相手を一人受け取りますくらいの意味。
-  attack(target: Character): void {
+attack(target: Character): void {
+//ここまで元々書いてありました
+
     // TODO: target の hp を this.attackPower の分だけ減らす
     // TODO: 攻撃の結果を console.log で表示する
     //       例) 「勇者 の攻撃！ スライム に 20 ダメージ（残りHP: 30）」
@@ -73,6 +74,7 @@ class Character {
             console.log(`gameover`);
             return this.hp;
             }
+
         this.attack(target);
  
         }
