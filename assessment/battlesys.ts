@@ -23,10 +23,11 @@ class Character {
   ///void: 戻り値を無視する
   ///voidがついてるからコンソールが出力されないというわけではない
   //でもなんでvoidがあるのかは説明できない
+  //なんのためにvoidがついているんですカ？？？？？？
 
   //target: は仮引数。
   //targetにはCharacterの方が入る、ということ
-  //‼️Characterの型、というのはCharacterから作られたインスタンス
+  //‼️Characterの型、というのはCharacterから作られたインスタンスらしいです。
   //attackメソどはCharacter型の相手を一人受け取りますくらいの意味。
   attack(target: Character): void {
     // TODO: target の hp を this.attackPower の分だけ減らす
@@ -43,29 +44,34 @@ class Character {
     //一回attackDmg消してみる
     // function attackDmg( name: string, hp: number, attackPower: number){
         //もしhpの方が攻撃より数字が大きい時(>=だと同じ時0になっちゃう)
-        if(this.hp > this.attackPower){
+        if(target.hp > this.attackPower){
             // hp -= attackPower; ←これいらない
 
             //残りダメージの表示
             //ここのnumberは型なので変数名ではあリャエセn
-                let remHp: number = this.hp -= this.attackPower;
+                let remHp: number = target.hp -= this.attackPower;
             //remainingHpをリターン
-            console.log(`${this.name}が${target}に${this.attackPower}ダメージを与えた！(残り${remHp}HP。)`);
+            console.log(`${this.name}が${target.name}に${this.attackPower}ダメージを与えた！(残り${remHp}HP)`);
             return this.hp;
             //this number is not assignable to type voidだって
+            //returnがないとコンソールに表示されないんじゃないの？
+            //returnがないとコンソールに表示されないのではなく
+            //returnがないと「呼び出し元に値を渡せない」ということ（？）
+            //結局どうしたらいいんだよ
+            //→→→→
 
-            } else if(this.hp = 0){
-            console.log(`${target}を倒した！`);
+            //倒した
+            } else if(target.hp = 0){
+            console.log(`${target.name}を倒した！`);
             return this.hp;
-            }else{
+
+            //倒された
+            }else if(this.hp = 0){
             console.log(`gameover`);
+            return this.hp;
             }
         this.attack(target);
-        //勇者が[object Object]に50ダメージを与えた！(残り50HP。)と出てきた、
-        //何を直したら正確に出るか？
-        //今の問題点：スライムの情報が出てない。
-        //:returnに赤波線あり→return消したらコンソール出力されなくなる
-        //:勇者の体力から攻撃力がマイナスされている
+ 
         }
         
     }
@@ -77,12 +83,27 @@ class Character {
 
     //引数がclass最初に決めたプロパティの順番じゃないとダメかもしれ
     const yusha = new Character('勇者',100,50);
+
+    //このクラスの外で作ったslimeの変数をattackのメソッドの中で使うのは基本的に考えない
+    //相手がスライムだけとは限らないので
+    //でもtargetとして使うにはどうしたらいいの？
+    //imgettingconfusedfk
     const slime = new Character('スライム',80,30);
 
+
     //オブジェクト.メソッド※[.は〜の]
-    //一回実行したらundefinedになった。なぜ？
-    //→void
-    //
+    //一回実行したらundefinedになった。なぜ？→関数の呼び出しを行なっていなかったからかもしれません
+    //その後、functionのattackDmgを消したら下の結果になった↓↓↓
+
+     //勇者が[object Object]に50ダメージを与えた！(残り50HP。)と出てきた、
+    //何を直したら正確に出るか？
+    //今の問題点１：スライムの情報が出てない。
+    //２:returnに赤波線あり→return消したらコンソール出力されなくなる
+    //３:勇者の体力から攻撃力がマイナスされている
+
+
+    //yusha.attackならthisはyushaになる
+    //()がslimeならtargetがslimeになる
     console.log(yusha.attack(slime));
 
  
